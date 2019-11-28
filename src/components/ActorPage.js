@@ -6,6 +6,15 @@ import {
   fetchMoviesByActorId,
 } from './../services/fetchMoviesDatabase';
 
+import {
+  ActorPageStyle,
+  ActorPicContainer,
+  ActorPic,
+  ActorInfosContainer,
+  ActorCreditsContainer,
+  AppearsInText,
+} from './../Styles';
+
 export class ActorPage extends Component {
   state = {
     actorInfos: {},
@@ -14,6 +23,12 @@ export class ActorPage extends Component {
 
   componentDidMount() {
     this.getActorInfos();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.getActorInfos();
+    }
   }
   getActorInfos = async () => {
     const {
@@ -42,28 +57,35 @@ export class ActorPage extends Component {
     } = this;
     console.log(moviesActorPlaysIn);
     return (
-      <div>
-        ACTOR PAGE
-        <div key={id}>
-          <img
+      <ActorPageStyle>
+        <ActorPicContainer key={id}>
+          <ActorPic
             alt="actor/actress"
-            src={`https://image.tmdb.org/t/p/w185${profile_path}`}
+            src={
+              profile_path === null
+                ? 'https://images.unsplash.com/photo-1559059699-085698eba48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+                : `https://image.tmdb.org/t/p/w185${profile_path}`
+            }
           />
-        </div>
-        <div>
+        </ActorPicContainer>
+        <ActorInfosContainer>
           <h1>{name}</h1>
           <p>{biography}</p>
-          <p>Website : {homepage}</p>
-        </div>
-        <div>
-          <p>Appears in:</p>
+          {!!homepage && <p>Website : {homepage}</p>}
+        </ActorInfosContainer>
+        <ActorCreditsContainer>
+          <AppearsInText>Appears in:</AppearsInText>
           {moviesActorPlaysIn.map(
             ({ credit_id, character, title, backdrop_path, id }) => (
               <div key={credit_id}>
                 <Link to={`/movie/${id}`}>
                   <div>
                     <img
-                      src={`https://image.tmdb.org/t/p/w300${backdrop_path}`}
+                      src={
+                        backdrop_path === null
+                          ? 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+                          : `https://image.tmdb.org/t/p/w300${backdrop_path}`
+                      }
                       alt="movie poster"
                     />
                     <p>
@@ -74,8 +96,8 @@ export class ActorPage extends Component {
               </div>
             )
           )}
-        </div>
-      </div>
+        </ActorCreditsContainer>
+      </ActorPageStyle>
     );
   }
 }

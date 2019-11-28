@@ -43,3 +43,12 @@ export const fetchMoviesByActorId = actorId => {
     }
   );
 };
+
+export const fetchUserQuery = query => {
+  return axios.get(`https://api.themoviedb.org/3/search/multi`, {
+    params: {
+      api_key: auth.api_key,
+      query: query,
+    },
+  });
+};

@@ -57,7 +57,11 @@ export class MoviePage extends React.Component {
           <img
             style={{ width: '100%', height: '100%' }}
             alt="movie pic"
-            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            src={
+              poster_path === null
+                ? 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+                : `https://image.tmdb.org/t/p/w500${poster_path}`
+            }
           />
         </div>
         <div
@@ -71,11 +75,15 @@ export class MoviePage extends React.Component {
           {movieCredits.map(
             ({ cast_id, character, id, name, profile_path }) => (
               <div key={cast_id}>
-                <Link to={`/actor/${id}`}>
+                <Link to={`/person/${id}`}>
                   <div>
                     <img
                       alt="actor/actress"
-                      src={`https://image.tmdb.org/t/p/w45${profile_path}`}
+                      src={
+                        profile_path === null
+                          ? 'https://images.unsplash.com/photo-1559059699-085698eba48c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
+                          : `https://image.tmdb.org/t/p/w45${profile_path}`
+                      }
                     />
                   </div>
                 </Link>
