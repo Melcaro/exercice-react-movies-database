@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import { fetchActorInfos } from './../services/fetchMoviesDatabase';
+import {
+  fetchActorInfos,
+  fetchMoviesByActorId,
+} from './../services/fetchMoviesDatabase';
 
 export class ActorPage extends Component {
   state = {
     actorInfos: {},
+    moviesActorPlaysIn: [],
   };
 
   componentDidMount() {
@@ -17,15 +22,25 @@ export class ActorPage extends Component {
       },
     } = this.props;
     const { data: results } = await fetchActorInfos(id);
+    const {
+      data: { cast },
+    } = await fetchMoviesByActorId(id);
     this.setState(
       {
         actorInfos: results,
+        moviesActorPlaysIn: cast,
       },
       () => console.log(this.state.actorInfos)
     );
   };
   render() {
-    const {actorInfos:  { id, name, biography, profile_path, homepage } }= this.state;
+    const {
+      state: {
+        actorInfos: { id, name, biography, profile_path, homepage },
+        moviesActorPlaysIn,
+      },
+    } = this;
+    console.log(moviesActorPlaysIn);
     return (
       <div>
         ACTOR PAGE
@@ -41,7 +56,24 @@ export class ActorPage extends Component {
           <p>Website : {homepage}</p>
         </div>
         <div>
-            <p>Appears in:</p>
+          <p>Appears in:</p>
+          {moviesActorPlaysIn.map(
+            ({ credit_id, character, title, backdrop_path, id }) => (
+              <div key={credit_id}>
+                <Link to={`/movie/${id}`}>
+                  <div>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w300${backdrop_path}`}
+                      alt="movie poster"
+                    />
+                    <p>
+                      {title} - {character}{' '}
+                    </p>
+                  </div>
+                </Link>
+              </div>
+            )
+          )}
         </div>
       </div>
     );

@@ -39,15 +39,15 @@ export class HomePage extends Component {
               backdrop_path,
             }) => (
               <div key={id}>
-                <div>
                   <Link to={`/movie/${id}`}>
+                <div>
                     <img
                       src={`https://image.tmdb.org/t/p/w300${backdrop_path}`}
                       alt="movie poster"
                     />
                     <p>{title}</p>
-                  </Link>
                 </div>
+                  </Link>
               </div>
             )
           )}

@@ -32,3 +32,14 @@ export const fetchActorInfos = actorId => {
     },
   });
 };
+
+export const fetchMoviesByActorId = actorId => {
+  return axios.get(
+    `https://api.themoviedb.org/3/person/${actorId}/movie_credits`,
+    {
+      params: {
+        api_key: auth.api_key,
+      },
+    }
+  );
+};
