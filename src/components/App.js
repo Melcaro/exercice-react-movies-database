@@ -1,19 +1,16 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>MOVIES DATABASE</h1>
-        <div className="movieContainer">
-          
+import { HomePage } from './HomePage';
+import { MoviePage } from './MoviePage';
 
-
-
-        </div>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <BrowserRouter className="App">
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/movie/:id" component={MoviePage} />
+    </BrowserRouter>
+  );
 }
 
 export default App;
