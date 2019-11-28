@@ -18,8 +18,6 @@ export class HomePage extends Component {
     this.setState({
       moviesResults: results,
     });
-
-    console.log(this.state.moviesResult);
   };
 
   render() {
