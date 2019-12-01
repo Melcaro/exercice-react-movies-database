@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import {
   fetchActorInfos,
@@ -13,6 +12,11 @@ import {
   ActorInfosContainer,
   ActorCreditsContainer,
   AppearsInText,
+  MoviesCreditsContainer,
+  LinkedElement,
+  MovieBackdropContainer,
+  MovieBackdropImg,
+  MovieTitle,
 } from './../Styles';
 
 export class ActorPage extends Component {
@@ -74,13 +78,13 @@ export class ActorPage extends Component {
           {!!homepage && <p>Website : {homepage}</p>}
         </ActorInfosContainer>
         <ActorCreditsContainer>
-          <AppearsInText>Appears in:</AppearsInText>
-          {moviesActorPlaysIn.map(
-            ({ credit_id, character, title, backdrop_path, id }) => (
-              <div key={credit_id}>
-                <Link to={`/movie/${id}`}>
-                  <div>
-                    <img
+          <AppearsInText>APPEARS IN:</AppearsInText>
+          <MoviesCreditsContainer>
+            {moviesActorPlaysIn.map(
+              ({ credit_id, character, title, backdrop_path, id }) => (
+                <MovieBackdropContainer key={credit_id}>
+                  <LinkedElement to={`/movie/${id}`}>
+                    <MovieBackdropImg
                       src={
                         backdrop_path === null
                           ? 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80'
@@ -88,14 +92,14 @@ export class ActorPage extends Component {
                       }
                       alt="movie poster"
                     />
-                    <p>
+                    <MovieTitle>
                       {title} - {character}{' '}
-                    </p>
-                  </div>
-                </Link>
-              </div>
-            )
-          )}
+                    </MovieTitle>
+                  </LinkedElement>
+                </MovieBackdropContainer>
+              )
+            )}
+          </MoviesCreditsContainer>
         </ActorCreditsContainer>
       </ActorPageStyle>
     );

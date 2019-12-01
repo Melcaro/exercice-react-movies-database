@@ -106,7 +106,6 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-
   border-radius: 5px;
 `;
 
@@ -120,23 +119,21 @@ export const MovieTitle = styled.p`
   margin-top: 0;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  padding: 2px;
 `;
 
 // ACTOR PAGE
 
 export const ActorPageStyle = styled.div`
-  border: 1px solid red;
   margin-top: 1%;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 `;
 
 export const ActorPicContainer = styled.div`
   flex: 0 1 10%;
-  border: 1px solid green;
-  margin-top: 1%;
 `;
 
 export const ActorPic = styled.img`
@@ -146,13 +143,10 @@ export const ActorPic = styled.img`
 
 export const ActorInfosContainer = styled.div`
   flex: 0 1 60%;
-  border: 1px solid blue;
   margin-left: 3%;
-  margin-top: 1%;
 `;
 
 export const ActorCreditsContainer = styled.div`
-  border: 1px solid red;
   flex: 1 1 100%;
   display: flex;
   flex-wrap: wrap;
@@ -161,8 +155,93 @@ export const ActorCreditsContainer = styled.div`
 
 export const AppearsInText = styled.p`
   flex: 1 1 100%;
-  border: 1px solid brown;
   padding-left: 5%;
   font-weight: bold;
+  text-decoration: underline;
   font-size: 1em;
+`;
+
+export const MoviesCreditsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1%;
+`;
+
+export const MovieBackdropContainer = styled.div`
+  flex: 0 1 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const MovieBackdropImg = styled.img`
+  width: 100%;
+`;
+
+export const MovieBackdropTitle = styled.p`
+  text-align: center;
+  color: black;
+`;
+
+// MOVIE PAGE
+
+export const MoviePageStyle = styled.div`
+  margin-top: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+export const MoviePicContainer = styled.div`
+  flex: 0 1 30%;
+`;
+
+export const MovieImg = styled.img`
+  width: 100%;
+`;
+
+export const MovieInfos = styled.div`
+  flex: 0 1 60%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const CastContainer = styled.div`
+  flex: 0 1 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const CastTitle = styled.div`
+  flex: 1 1 100%;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 2%;
+`;
+
+export const ActorContainer = styled.div`
+  flex: 0 1 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const ActorImgContainer = styled.div`
+  flex: 0 1 90%;
+`;
+
+export const ActorImg = styled.img`
+  width: 100%;
+`;
+
+export const ActorName = styled.p`
+  flex: 1 1 10%;
+  text-align: center;
 `;
