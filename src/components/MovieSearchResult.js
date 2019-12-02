@@ -14,11 +14,11 @@ export const MovieSearchResult = ({
   isHighlighted,
   onKeyDown,
 }) => {
-  const { id, backdrop_path, title, index } = result;
+  const { id, backdrop_path, title } = result;
   return (
     <SearchResultsContainer
       key={id}
-      style={{ border: isHighlighted ? '2px solid blue' : null}}
+      style={{ border: isHighlighted ? '2px solid blue' : null }}
       onKeyDown={onKeyDown}
     >
       <LinkedElement to={`/movie/${id}`} onClick={onClick}>
