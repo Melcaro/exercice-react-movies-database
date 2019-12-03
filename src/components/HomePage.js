@@ -11,17 +11,27 @@ import {
 } from './../Styles';
 
 export class HomePage extends Component {
-  state = {
-    moviesResults: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      moviesResults: [],
+    };
+  }
   componentDidMount() {
     this.getListOfMovies();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.getListOfMovies();
+    }
+  }
+
   getListOfMovies = async () => {
+    const { language } = this.props;
     const {
       data: { results },
-    } = await fetchMoviesDataBase();
+    } = await fetchMoviesDataBase(language);
     this.setState({
       moviesResults: results,
     });
@@ -34,8 +44,7 @@ export class HomePage extends Component {
 
     return (
       <HomePageStyle>
-        {moviesResults.map(({ id, title,
-          backdrop_path }) => (
+        {moviesResults.map(({ id, title, backdrop_path }) => (
           <MovieContainer key={id}>
             <LinkedElement to={`/movie/${id}`}>
               <ImageContainer>

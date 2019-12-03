@@ -1,54 +1,59 @@
 import { auth } from '../auth';
 import axios from 'axios';
 
-export const fetchMoviesDataBase = () => {
-  return axios.get(`https://api.themoviedb.org/3/discover/movie`, {
+const url = 'https://api.themoviedb.org/3';
+
+export const fetchMoviesDataBase = language => {
+  return axios.get(`${url}/discover/movie`, {
     params: {
       api_key: auth.api_key,
+      language: language,
     },
   });
 };
 
-export const fetchMoviesById = movieId => {
-  return axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
+export const fetchMoviesById = (movieId, language) => {
+  return axios.get(`${url}/movie/${movieId}`, {
     params: {
       api_key: auth.api_key,
+      language: language,
     },
   });
 };
 
-export const fetchMovieCredits = movieId => {
-  return axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
+export const fetchMovieCredits = (movieId, language) => {
+  return axios.get(`${url}/movie/${movieId}/credits`, {
     params: {
       api_key: auth.api_key,
+      language: language,
     },
   });
 };
 
-export const fetchActorInfos = actorId => {
-  return axios.get(`https://api.themoviedb.org/3/person/${actorId}`, {
+export const fetchActorInfos = (actorId, language) => {
+  return axios.get(`${url}/person/${actorId}`, {
     params: {
       api_key: auth.api_key,
+      language: language,
     },
   });
 };
 
-export const fetchMoviesByActorId = actorId => {
-  return axios.get(
-    `https://api.themoviedb.org/3/person/${actorId}/movie_credits`,
-    {
-      params: {
-        api_key: auth.api_key,
-      },
-    }
-  );
+export const fetchMoviesByActorId = (actorId, language) => {
+  return axios.get(`${url}/person/${actorId}/movie_credits`, {
+    params: {
+      api_key: auth.api_key,
+      language: language,
+    },
+  });
 };
 
-export const fetchUserQuery = query => {
-  return axios.get(`https://api.themoviedb.org/3/search/multi`, {
+export const fetchUserQuery = (query, language) => {
+  return axios.get(`${url}/search/multi`, {
     params: {
       api_key: auth.api_key,
       query: query,
+      language: language,
     },
   });
 };

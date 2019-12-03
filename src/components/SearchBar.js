@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import debounce from 'lodash.debounce';
 
 import { fetchUserQuery } from './../services/fetchMoviesDatabase';
@@ -7,8 +7,10 @@ import { MovieSearchResult } from './MovieSearchResult';
 import { PersonSearchResult } from './PersonSearchResult';
 
 import { SearchBarStyle, InputStyle, ResultsContainer } from './../Styles';
+import { Language } from './Language';
+import { ThemeContext } from '../services/ThemeContext';
 
-export class SearchBar extends Component {
+export class SearchBar extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -60,15 +62,13 @@ export class SearchBar extends Component {
   };
 
   startSearch = async () => {
+    const { language } = this.props;
     const {
       data: { results },
-    } = await fetchUserQuery(this.state.userSearch);
-    this.setState(
-      {
-        searchResults: results,
-      },
-      () => console.log(this.state.searchResults)
-    );
+    } = await fetchUserQuery(this.state.userSearch, language);
+    this.setState({
+      searchResults: results,
+    });
   };
 
   clearSearchBar = () => {
@@ -77,6 +77,12 @@ export class SearchBar extends Component {
       searchResults: [],
     });
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.startSearch();
+    }
+  }
 
   render() {
     const {
@@ -92,6 +98,11 @@ export class SearchBar extends Component {
             value={userSearch}
           ></InputStyle>
         </div>
+        <ThemeContext.Consumer>
+          {lang => (
+            <Language {...lang} changeLanguage={this.props.changeLanguage} />
+          )}
+        </ThemeContext.Consumer>
 
         {!!searchResults && (
           <ResultsContainer>
