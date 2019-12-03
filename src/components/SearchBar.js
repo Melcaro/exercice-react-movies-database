@@ -8,7 +8,7 @@ import { PersonSearchResult } from './PersonSearchResult';
 
 import { SearchBarStyle, InputStyle, ResultsContainer } from './../Styles';
 import { Language } from './Language';
-import { ThemeContext } from '../services/ThemeContext';
+import { ThemeContext } from '../services/LanguageContext';
 
 export class SearchBar extends PureComponent {
   constructor(props) {

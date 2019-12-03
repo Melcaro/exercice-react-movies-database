@@ -7,6 +7,7 @@ export const Language = props => {
     changeLanguage(value);
   };
 
+
   return (
     <select onChange={changeLang} value={languageValue}>
       <option value="fr">FR</option>

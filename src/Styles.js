@@ -9,6 +9,7 @@ export const AppStyle = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  background-color: ${props => (props.theme === 'dark' ? 'black' : null)};
 `;
 
 export const LinkedElement = styled(Link)`
